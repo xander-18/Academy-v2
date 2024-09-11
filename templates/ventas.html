@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resumen de Ventas</title>
+    <style>
+        :root {
+            --primary-color: #0a8cbf;
+            --secondary-color: #88dff2;
+            --accent-color: #024873;
+            --background-color: #022840;
+            --text-color: #f0f1f5;
+            --form-bg-color: #ffffff;
+            --card-bg-color: #ffffff;
+            --border-color: #e0e0e0;
+            --hover-bg-color: #5753d9;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: var(--card-bg-color);
+        }
+
+        table, th, td {
+            border: 1px solid var(--border-color);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--secondary-color);
+        }
+
+        tr:nth-child(odd) {
+            background-color: var(--form-bg-color);
+        }
+
+        tr:hover {
+            background-color: var(--hover-bg-color);
+        }
+    </style>
+</head>
+<body>
+    <h1>Resumen de Ventas</h1>
+    <table>
+        <tr>
+            <th>ID Producto</th>
+            <th>Nombre</th>
+            <!-- <th>Descripción</th> -->
+            <th>Precio</th>
+            <th>Fecha Vendida</th>
+            <th>Cantidad Vendida</th>
+        </tr>
+        {% for sale in sales %}
+        <tr>
+            <td>{{ sale.id_producto }}</td>
+            <td>{{ sale.nombre }}</td>
+            <!-- <td>{{ sale.descripcion }}</td> -->
+            <td>{{ sale.precio }}</td>
+            <td>{{ sale.fecha_vendida }}</td>
+            <td>{{ sale.cantidad }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

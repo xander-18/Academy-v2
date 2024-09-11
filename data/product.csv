@@ -1,0 +1,25 @@
+id,nombre,descripcion,precio,url_imagen,categoria
+1,Smartphone X,Smartphone con pantalla de 6.5 pulgadas y 128GB de almacenamiento,299.99,https://i5.walmartimages.com/seo/Pre-Owned-Apple-iPhone-X-256GB-Factory-Unlocked-Smartphone-Refurbished-Good_9b5ec8b2-9665-463b-adc5-64829ba72da6.1b496e5a8fcee76fdad69bae12b54745.jpeg,Tecnología
+2,Laptop Gamer Z,Computadora portátil con gráficos de alta calidad,1299.99,https://unaluka.com/cdn/shop/files/1_38dc9d2c-7afa-4c42-9ca7-f5b16e883718_2048x.jpg?v=1686950131,Tecnología
+3,Tablet Pro,Tablet con pantalla de alta definición y 256GB de almacenamiento,399.99,https://mac-center.com.pe/cdn/shop/files/iPad_Pro_Wi-Fi_12-9_in_6th_generation_Silver_PDP_Image_Position-1b_COES.jpg?v=1700284066&width=823,Tecnología    
+4,Monitor Ultra HD,Monitor de 27 pulgadas con resolución 4K,349.99,https://images.philips.com/is/image/philipsconsumer/52d332318b0b44e3a039b01100f11b77?$pnglarge$&wid=960,Tecnología
+5,Teclado Mecánico,Teclado mecánico con retroiluminación RGB,89.99,https://d598hd2wips7r.cloudfront.net/magefan_blog/Teclados_mec_nicos_todo_lo_que_necesit_s_saber.jpg,Tecnología
+6,Disco Duro Externo,Disco duro externo de 2TB para almacenamiento adicional,79.99,https://www.officedepot.com.mx/medias/100049995.jpg-1200ftw?context=bWFzdGVyfHJvb3R8Mjg5MTExfGltYWdlL2pwZWd8YURabUwyaGlaaTh4TURNMk1EUXdOREV4TlRRNE5pOHhNREF3TkRrNU9UVXVhbkJuWHpFeU1EQm1kSGN8YTQyNDU4ZGE1ZTNiZmMxZTZkYjU0MjA1MzExNmY5ZThiNDJjMDc0ZTcwNzFlMDE4YWJlNTdiNzUzMTM5YjQwMA,Tecnología
+7,Camiseta de Algodón,Comodidad y estilo en una camiseta de algodón 100%,19.99,https://secretos.com.pe/wp-content/uploads/2023/05/16602-camiseta-algodon-rib-copy.webp,Moda
+8,Chaqueta de Cuero,Chaqueta de cuero auténtico para un look elegante,199.99,https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4U-lfQKQvj-4WyEDUNlSFcETZpRYeDTfdPQ&s,Moda
+9,Zapatos de Vestir,Zapatos elegantes para ocasiones especiales,89.99,https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQL4bRe4s5IT_PNectAqAR32MWPCYvBQ4DH2A&s,Moda
+10,Chaqueta de Lona,Chaqueta ligera y resistente para el día a día,69.99,https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxH0byO_pNeb52sPumlDyPfBeHXepbKo9CEA&s,Moda
+11,Pantalones Vaqueros,Pantalones vaqueros ajustados con estilo moderno,49.99,https://hips.hearstapps.com/hmg-prod/images/pantalones-vaqueros-favorecedores-detalle-bolsillos-1669296763.jpg,Moda
+12,Cinturón de Cuero,Cinturón de cuero genuino para complementar tu atuendo,29.99,https://http2.mlstatic.com/D_NQ_NP_615724-MLU74390134353_022024-O.webp,Moda
+13,Reloj Inteligente,Un reloj que monitorea tu actividad física y salud,149.99,https://m.media-amazon.com/images/I/416ZoHgNZiL._SL500_.jpg,Accesorios
+14,Gafas de Sol,Protección UV con estilo,49.99,https://media.revistagq.com/photos/60647838f0dbd58beb792309/1:1/w_1310,h_1310,c_limit/david%20beckham%20eyewear.jpeg,Accesorios
+15,Cartera de Cuero,Cartera de cuero con múltiples compartimentos,59.99,https://www.pielesvelasquez.com/wp-content/uploads/2018/06/cartera-de-dama-en-cuero.jpg,Accesorios
+16,Audífonos Bluetooth,Audífonos inalámbricos con cancelación de ruido,129.99,https://oechsle.vteximg.com.br/arquivos/ids/15210169-1000-1000/image-df525a9ac9d149ffac2cdbef31fcded6.jpg?v=638280103630300000,Accesorios
+17,Sombrero de Paja,Sombrero de paja para protección solar,24.99,https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJtEpJnP6mu4-LcaPgksGBp-jbD-a3qo2abw&s,Accesorios
+18,Bolso de Mano,Bolso de mano de diseño elegante y práctico,89.99,https://promart.vteximg.com.br/arquivos/ids/7791053-1000-1000/image-7cdaeb6f8b454028830b11824558df9d.jpg?v=638417060118470000,Accesorios
+19,Zapatillas Deportivas,Calzado ligero y cómodo para   correr,89.99,https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkLGmaBABbnkbo_FuwNVv4ZUBIpBhOQCPKnyS6t73olkthBpzdLYRDBSEeN_8qaaOAQSg&usqp=CAU,Deporte
+20,Bicicleta de Montaña,Ideal para aventuras al aire libre,499.99,https://www.jafibike.com.pe/wp-content/uploads/SAVA-200-gris-verde.jpg,Deporte
+21,Raqueta de Tenis,Raqueta de tenis con tecnología avanzada,149.99,https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQvVY1mSupAj3yms8e0juIZ6SD-TwoQYWg8A&s,Deporte
+22,Patines en Línea,Patines en línea para una experiencia fluida,79.99,https://m.media-amazon.com/images/I/71ycYF+ZENL._AC_SL1500_.jpg,Deporte
+23,Set de Pesas,Set de pesas con variedad de pesos para entrenamiento,99.99,https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSU_lSXh2ebKnJ5KCQf4MREjiM35rLz_c60w&s,Deporte
+24,Botellas de Agua Reutilizables,Botellas de agua ecológicas y duraderas,15.99,https://www.grupobillingham.com/blog/wp-content/uploads/2021/04/que-tipo-de-botella-de-agua-elegir-750x410.jpg,Deporte

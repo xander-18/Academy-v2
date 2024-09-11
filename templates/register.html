@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro</title>
+  <style>
+    :root {
+        --primary-color: #0a8cbf; /* Azul brillante como color principal */
+        --secondary-color: #88dff2; /* Azul claro como color secundario */
+        --accent-color: #024873; /* Azul más oscuro para acentos */
+        --background-color: #022840; /* Fondo oscuro para menos fatiga visual */
+        --text-color: #f0f1f5; /* Texto claro que resalte sobre fondo oscuro */
+        --form-bg-color: #ffffff; /* Color de fondo del formulario */
+        --card-bg-color: #ffffff; /* Color de fondo de las tarjetas de producto */
+        --border-color: #e0e0e0; /* Color del borde de los campos de entrada */
+        --hover-bg-color: #5753d9; /* Color de fondo del botón al pasar el ratón */
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: var(--background-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-container {
+      background-color: var(--accent-color);
+      padding: 30px;
+      border-radius: 10px;
+      width: 400px;
+      height: auto; /* Cambiado a auto para ajustar el tamaño según el contenido */
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* Cambiado a center para alinear verticalmente */
+    }
+
+    h2 {
+      color: var(--text-color);
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 24px;
+    }
+
+    .oauth-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .oauth-buttons button {
+      padding: 10px;
+      width: 48%;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .google-btn {
+      background: linear-gradient(128.49deg, var(--primary-color) 19.86%, var(--secondary-color) 68.34%);
+      color: var(--text-color);
+    }
+
+    .apple-btn {
+      background: var(--accent-color);
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+    }
+
+    .separator {
+      text-align: center;
+      color: var(--text-color);
+      margin: 20px 0;
+      font-size: 14px;
+    }
+
+    input[type="email"],
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      background-color: rgba(27, 33, 54, 0.5);
+      color: var(--text-color);
+      font-size: 14px;
+    }
+
+    .options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      color: var(--text-color);
+      font-size: 14px;
+    }
+
+    .forgot-password {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(128.49deg, var(--primary-color) 19.86%, var(--secondary-color) 68.34%);
+      color: var(--text-color);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .signup-link {
+      text-align: center;
+      color: var(--text-color);
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .signup-link a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .alert {
+      background-color: #f8d7da;
+      color: #721c24;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    .alert .success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+
+    .alert .error {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 50px;
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+      align-self: flex-start;
+    }
+
+    .back-link:hover {
+      color: var(--secondary-color);
+      transform: translateX(-5px);
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Registro</h2>
+    <div class="oauth-buttons">
+        <button class="google-btn">Login with Google</button>
+        <button class="apple-btn">Login with Apple</button>
+    </div>
+    <form action="{{ url_for('register') }}" method="POST">
+        <div class="separator">or Login with</div>
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="password" name="password" placeholder="Your Password" required>
+        <div class="options">
+            <label><input type="checkbox" name="remember"> Remember me</label>
+            <a href="#" class="forgot-password">Forgot password?</a>
+        </div>
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+    <p class="signup-link">Don't have an account? <a href="#">Signup</a></p>
+    <!-- Mensajes de alerta -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="alert">
+          {% for category, message in messages %}
+            <div class="{{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+  </div>
+  <a href="{{ url_for('index') }}" class="back-link">← Volver</a>
+</body>
+</html>

@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recomendaciones de Productos</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
+      :root {
+        --primary-color: #0a8cbf; /* Azul brillante como color principal */
+        --secondary-color: #88dff2; /* Azul claro como color secundario */
+        --accent-color: #024873; /* Azul más oscuro para acentos */
+        --background-color: #022840; /* Fondo oscuro para menos fatiga visual */
+        --text-color: #f0f1f5; /* Texto claro que resalte sobre fondo oscuro */
+        --form-bg-color: #ffffff; /* Color de fondo del formulario */
+        --card-bg-color: #ffffff; /* Color de fondo de las tarjetas de producto */
+        --border-color: #e0e0e0; /* Color del borde de los campos de entrada */
+        --hover-bg-color: #5753d9; /* Color de fondo del botón al pasar el ratón */
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: var(--background-color);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        padding: 2rem;
+      }
+
+      h1 {
+        color: var(--primary-color);
+        text-align: center;
+        font-size: 3rem;
+        margin-bottom: 2rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        position: relative;
+      }
+
+      h1::after {
+        content: "";
+        display: block;
+        width: 50px;
+        height: 4px;
+        background-color: var(--secondary-color);
+        margin: 1rem auto;
+      }
+
+      form {
+        background-color: var(--form-bg-color);
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        margin-bottom: 3rem;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      form::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(108, 99, 255, 0.1),
+          transparent
+        );
+        transform: rotate(45deg);
+        transition: all 0.5s ease;
+      }
+
+      form:hover::before {
+        left: 100%;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--primary-color);
+        font-weight: 600;
+        font-size: 1.1rem;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        border: 2px solid var(--border-color);
+        border-radius: 10px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      input[type="text"]:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+        outline: none;
+      }
+
+      button {
+        background-color: var(--primary-color);
+        color: #fff;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: block;
+        width: 100%;
+      }
+      button:hover {
+        background-color: var(--hover-bg-color);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
+      }
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
+        padding: 1rem;
+      }
+      .product-card {
+        background-color: var(--card-bg-color);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .product-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        transition: all 0.3s ease;
+        border-bottom: 2px solid var(--border-color);
+      }
+
+      .product-card:hover .product-image {
+        transform: scale(1.1);
+      }
+
+      .product-info {
+        padding: 1.5rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .product-name {
+        font-size: 1.2rem;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+      }
+
+      .product-description {
+        font-size: 0.9rem;
+        color: #666;
+        margin-bottom: 1rem;
+        flex: 1;
+        max-height: 60px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .product-price {
+        font-weight: bold;
+        color: var(--secondary-color);
+        font-size: 1.3rem;
+        align-self: flex-end;
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-top: 2rem;
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        font-size: 1.1rem;
+      }
+
+      .back-link:hover {
+        color: var(--secondary-color);
+        transform: translateX(-5px);
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 1rem;
+        }
+
+        h1 {
+          font-size: 2.5rem;
+        }
+
+        .products-grid {
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .product-image {
+          height: 250px;
+        }
+      }
+
+      nav {
+        background-color: var(--primary-color);
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+      }
+
+      nav ul li {
+        margin-right: 1.5rem;
+      }
+
+      nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.1rem;
+      }
+
+      nav ul li a:hover {
+        text-decoration: underline;
+      }
+
+      .main-header {
+        text-align: center;
+        padding: 4rem;
+        background-color: var(--secondary-color);
+        color: #fff;
+      }
+
+      .main-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .main-header p {
+        font-size: 1.2rem;
+      }
+
+      .content {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 1.5rem;
+        background: var(--background-color);
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+      .slider {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.slider-wrapper {
+  display: flex;
+  transition: transform 0.7s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.slide img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+}
+
+.slider-prev,
+.slider-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 30px; /* Tamaño reducido */
+  height: 30px; /* Tamaño reducido */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 1.2rem; /* Tamaño del icono */
+  transition: background-color 0.3s ease;
+}
+
+.slider-prev {
+  left: 10px; /* Espaciado reducido */
+}
+
+.slider-next {
+  right: 10px; /* Espaciado reducido */
+}
+
+.slider-prev:hover,
+.slider-next:hover {
+  background-color: rgba(0, 0, 0, 0.5); /* Color de fondo en hover */
+}
+
+.slider-dots {
+  position: absolute;
+  bottom: 1rem;
+  width: 100%;
+  text-align: center;
+}
+
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: #bbb;
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+}
+.dot.active {
+  background-color: #717171;
+}
+    </style>
+  </head>
+  <body>
+    
+    <nav>
+      <div style="text-align: center; padding: 10px;">
+        <a href="#">
+          <img src="/img/logo.jpg" alt="Logo" style="
+            width: auto;
+            height: 60px;
+            display: inline-block;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+          ">
+        </a>
+      </div>
+      
+      <ul>
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Servicios</a></li>
+        <li><a href="#">Productos</a></li>
+        <li><a href="{{ url_for('register') }}">Registrate</a></li>
+      </ul>
+    </nav>  
+
+
+    <!-- <header class="main-header">
+      <h1>Nuestros Servicios</h1>
+      <p>Ofrecemos las mejores soluciones para satisfacer tus necesidades.</p>
+    </header> -->
+
+<br><br>
+    <div class="slider">
+      <div class="slider">  
+        <div class="slider-wrapper">
+          <div class="slide">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9VLk4TXiX0cn5-8svuTjc-qBm8jprXvazBQ&s@" alt="Descripción del producto 1" />
+          </div>
+          <div class="slide">
+            <img src="https://blog.ripley.com.pe/wp-content/uploads/2021/11/03-nov-entrenamiento-en-casa.jpg" alt="Descripción del producto 2" />
+          </div>
+          <div class="slide">
+            <img src="https://d1ih8jugeo2m5m.cloudfront.net/2024/08/productos_innovadores_que_no_existen_en_el_mercado.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAS5TIUU6FW2UPTSFZ%2F20240827%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240827T141949Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Signature=0ec773c19e2025a067752b37fd40758ac7c08c519d99aa3060399943aaabfa57" alt="Descripción del producto 3" />
+          </div>
+        </div>
+        <button class="slider-prev">&#10094;</button>
+        <button class="slider-next">&#10095;</button>
+        <div class="slider-dots">
+          <span class="dot" data-index="0"></span>
+          <span class="dot" data-index="1"></span>
+          <span class="dot" data-index="2"></span>  
+        </div>
+      </div>
+
+      <h2>Servicios Personalizados</h2>
+      <p>
+        Nuestra gama de servicios personalizados incluye soluciones
+        tecnológicas, asesorías, y mucho más, todo diseñado específicamente para
+        cumplir con las expectativas de nuestros clientes.
+      </p>
+
+      <h2>Compromiso con la Calidad</h2>
+      <p>
+        Nos comprometemos a ofrecer productos y servicios de alta calidad,
+        asegurando que nuestros clientes siempre reciban lo mejor. Nuestra
+        misión es garantizar tu satisfacción en cada paso del proceso.
+      </p>
+    </section>
+
+    <div class="container">
+      <h1>Descubre Productos Increíbles</h1>
+
+      <form action="{{ url_for('recommendations') }}" method="POST">
+        <label for="interests">¿Qué te apasiona?</label>
+        <input
+          type="text"
+          id="interests"
+          name="interests"
+          placeholder="Ej: tecnología, moda, deportes"
+          required
+        />
+        <button type="submit">Descubrir Ahora</button>
+      </form>
+
+      <div class="products-grid">
+        {% if recommendations %} {% for product in recommendations %}
+        <div class="product-card">
+          <img
+            src="{{ product['url_imagen'] }}"
+            alt="{{ product['nombre'] }}"
+            class="product-image"
+          />
+          <div class="product-info">
+            <h2 class="product-name">{{ product['nombre'] }}</h2>
+            <p class="product-description">{{ product['descripcion'] }}</p>
+            <span class="product-price">${{ product['precio'] }}</span>
+          </div>
+        </div>
+        {% endfor %} {% else %}
+        <p>¡Introduce tus intereses y descubre productos increíbles!</p>
+        {% endif %}
+      </div>
+      <a href="{{ url_for('index') }}" class="back-link">← Volver al inicio</a>
+    </div>
+    <footer>
+      <p>© 2024 Tu Empresa. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+  document.addEventListener('DOMContentLoaded', () => {
+  const slides = document.querySelectorAll('.slide');
+  const sliderWrapper = document.querySelector('.slider-wrapper');
+  const prevButton = document.querySelector('.slider-prev');
+  const nextButton = document.querySelector('.slider-next');
+  const dots = document.querySelectorAll('.dot');
+  let index = 0;
+
+  function updateSlide() {
+    sliderWrapper.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[index].classList.add('active');
+  }
+
+  function goToSlide(n) {
+    index = (n + slides.length) % slides.length;
+    updateSlide();
+  }
+
+  prevButton.addEventListener('click', () => goToSlide(index - 1));
+  nextButton.addEventListener('click', () => goToSlide(index + 1));
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const dotIndex = parseInt(dot.getAttribute('data-index'));
+      goToSlide(dotIndex);
+    });
+  });
+
+  setInterval(() => goToSlide(index + 1), 7000); // Cambia de imagen cada 5 segundos
+
+  updateSlide();
+});
+    </script>
+  </body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Historial de Usuarios</title>
+    <style>
+        :root {
+            --primary-color: #0a8cbf;
+            --secondary-color: #88dff2;
+            --accent-color: #024873;
+            --background-color: #022840;
+            --text-color: #f0f1f5;
+            --form-bg-color: #ffffff;
+            --card-bg-color: #ffffff;
+            --border-color: #e0e0e0;
+            --hover-bg-color: #5753d9;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: var(--card-bg-color);
+        }
+
+        table, th, td {
+            border: 1px solid var(--border-color);
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--secondary-color);
+        }
+
+        tr:nth-child(odd) {
+            background-color: var(--form-bg-color);
+        }
+
+        tr:hover {
+            background-color: var(--hover-bg-color);
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Historial de Usuarios</h1>
+    <p>Total de usuarios: {{ total_usuarios }}</p>
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Fecha de Registro</th>
+        </tr>
+        {% for user in sales %}
+        <tr>
+            <td>{{ user.Nombre }}</td>
+            <td>{{ user.Email }}</td>
+            <td>{{ user["Fecha de Registro"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

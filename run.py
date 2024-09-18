@@ -136,7 +136,7 @@
 #     # Convertir el DataFrame a una lista de diccionarios
 #     recommendations_list = recommended_products.to_dict(orient="records")
 #     return render_template("index.html", recommendations=recommendations_list)
-
+                                                  
 
 # if __name__ == "__main__":
 #     app.run(debug=True, port=5001)

@@ -3,7 +3,7 @@
 matriz = {
     [1, 2, 3]
     [5, 8, 7]
-    [6, 4, 7]
+    [6, 4, 7] # elimine la tercera columna
     [7, 9, 8]
     }
 print(matriz)

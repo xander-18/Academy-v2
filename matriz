@@ -1,9 +1,27 @@
-# import numpy as np
+import numpy as np
 
-matriz = {
-    [1, 2, 3]
-    [5, 8, 7]
-    [6, 4, 7] # elimine la tercera columna
-    [7, 9, 8]
-    }
+
+matriz = np.arange(12).reshape((4, 3))
 print(matriz)
+
+matriz_eliminar = int(input("Que columna deseas eliminar? (0-3): "))
+# matriz_eliminar = int(input("Que columna deseas eliminar? (0-2)"))
+# resultado = np.delete(matriz, 2, axis=0)
+resultado = np.delete(matriz, matriz_eliminar, axis=0)
+print(f"Se eliminó la columna: {matriz_eliminar} -> {matriz[matriz_eliminar]}")
+print("Matriz resultante:")
+print(resultado)
+
+
+matriz1 = np.arange(9).reshape((3, 3))
+matriz2 = np.arange(9).reshape((3, 3))
+resultado = np.multiply(matriz1, matriz2)
+
+print(matriz1)
+print("---------------")
+print(matriz2)
+multiply = matriz1 * matriz2
+print("---------------")
+# print(multiply)
+print("Matriz Multiplicada")
+print(resultado)

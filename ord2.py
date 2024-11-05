@@ -1,16 +1,12 @@
-def select_seleccion(arreglo):
-    for i in range(len(arreglo) - 1):
-        menor = i
+import pandas as pd
 
-        for j in range(i + 1, len(arreglo)):
-            if arreglo[j] < arreglo[menor]:
-                menor = j
+data = {
+    "Producto": ["A", "B", "C", "D"],
+    "Categoria": ["Electrónica", "Ropa", "Electrónica", "Ropa"],
+    "Precio": [200, 30, 100, 40],
+}
+df = pd.DataFrame(data)
 
-        if menor != i:
-            arreglo[menor], arreglo[i] = arreglo[i], arreglo[menor]
+resultado = df.groupby(by=["Categoria"]).mean()
 
-
-b = [5, 3, 4, 2, 1]
-select_seleccion(b)
-
-print(b)
+print(resultado)

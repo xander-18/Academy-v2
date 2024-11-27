@@ -1,18 +1,6 @@
 import cv2
 import mediapipe as mp
 import json
-import sys
-import os
-
-if hasattr(sys, '_MEIPASS'):
-    # PyInstaller
-    base_path = sys._MEIPASS
-else:
-    # En desarrollo
-    base_path = os.path.abspath(".")
-
-senas_path = os.path.join(base_path, 'senas.json')
-modelo_path = os.path.join(base_path, 'modelo_senhas.pkl')
 
 # Inicializa MediaPipe
 mp_hands = mp.solutions.hands
@@ -23,8 +11,9 @@ hands = mp_hands.Hands(min_detection_confidence=0.7, min_tracking_confidence=0.5
 cap = cv2.VideoCapture(0)
 
 dataset = []  # Lista para almacenar los datos capturados
+current_label = None  # Etiqueta activa
 
-print("Presiona 's' para guardar una muestra con etiqueta. Presiona 'Esc' para salir.")
+print("Presiona 'c' para cambiar el label activo, 's' para guardar una muestra, y 'Esc' para salir.")
 
 while cap.isOpened():
     ret, frame = cap.read()
@@ -50,11 +39,18 @@ while cap.isOpened():
             for lm in hand_landmarks.landmark:
                 landmarks.append([lm.x, lm.y, lm.z])
 
-            # Captura la seña cuando se presiona la tecla 's'
+            # Guarda la muestra con la etiqueta activa
             if cv2.waitKey(1) & 0xFF == ord("s"):
-                label = input("Introduce la etiqueta para esta sena: ")
-                dataset.append({"landmarks": landmarks, "label": label})
-                print(f"Se guardo la muestra con etiqueta: {label}")
+                if current_label:
+                    dataset.append({"landmarks": landmarks, "label": current_label})
+                    print(f"Muestra guardada con etiqueta: {current_label}")
+                else:
+                    print("Primero define un label activo presionando 'c'.")
+
+    # Cambia el label activo
+    if cv2.waitKey(1) & 0xFF == ord("c"):
+        current_label = input("Introduce el nuevo label activo: ")
+        print(f"Label activo cambiado a: {current_label}")
 
     # Muestra el video en una ventana
     cv2.imshow("Capturador de Datos", frame)
